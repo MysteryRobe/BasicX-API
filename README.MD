@@ -70,8 +70,7 @@ This API is distributed under the Apache License 2.0.
 
 ## **Badges**
 
-* [Apache License](https://choosealicense.com/licenses/apsl-2.0/)
-* [API Documentation](https://docs.github.com/en/rest/reference/docs/api-docs)
+* [Apache License](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## **Prerequisites**
 

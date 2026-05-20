@@ -33,7 +33,7 @@
 - The API is distributed under a apache 2.0 license, allowing for free and personal use.
 
 ### Examples of usage
-''' javascript
+```` javascript
 api.convertToCelsius(100)
 api.convertToFahrenheit(100)
 api.secureConvertToFloat(100.5)

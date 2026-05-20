@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const settings = require('./settings.json');
+
+
 app.get("/passwordGenerator/:lengthPass/:canUpper/:canNumber/:canSymbols", (req, res) => {
     try {
         const length = parseInt(req.params.lengthPass);

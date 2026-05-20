@@ -1,87 +1,41 @@
----
+# BasicX-API
+ A simple JavaScript API with basic features for temperature conversion and secure password generation.
 
-**BasicX API a Temperature Conversion and Password Generator API**
+### Features
 
-## **Introduction**
+- **Celsius to Fahrenheit Conversion**: calculates the temperature in degrees Fahrenheit from a temperature in degrees Celsius.
+- **Fahrenheit to Celsius Conversion**: calculates the temperature in degrees Celsius from a temperature in degrees Fahrenheit.
+- **Secure Parameter Validation and Input Protection**: protects against invalid input, allowing only integers or floats and secure string inputs.
+- **Password Generation**: generates secure and random passwords for use.
 
-This API allows you to convert temperatures between Celsius and Fahrenheit, as well as generate random passwords. The purpose of this API documentation is to provide clear and concise information about the available endpoints, expected requests, and responses.
+### Requirements
 
-## **Endpoints**
+- No additional dependencies are required to use the API.
 
-### 1. Temperature Conversion
+### Installation and Usage
 
-* **`/celsius/to-fahrenheit`**: Converts a temperature from Celsius to Fahrenheit.
-* Request: `GET`
-* Parameters:
-* `temp_celsius`: the temperature in Celsius to convert
+1. Include the `BasicX-API.js` file in your project.
+2. Use the API's features through a web browser or your preferred application.
+3. Consult the Examples section for ideas on how to use the API.
 
+### Configuration
 
-* Response: The converted temperature in Fahrenheit formatted as a decimal.
+- The API can be configured to use different temperature options (Celsius/Fahrenheit) and password generation settings.
+- Please consult the API documentation for more information on configuring the API.
 
+### Contributing
 
+- Feel free to contribute improvements or new features to the API.
+- Please respect the contribution guidelines and follow the implementation instructions.
 
-### 2. Temperature Conversion
+### License
 
-* **`/fahrenheit/to-celsius`**: Converts a temperature from Fahrenheit to Celsius.
-* Request: `GET`
-* Parameters:
-* `temp_fahrenheit`: the temperature in Fahrenheit to convert
+- The API is distributed under a apache 2.0 license, allowing for free and personal use.
 
-
-* Response: The converted temperature in Celsius formatted as a decimal.
-
-
-
-### 3. Password Generator
-
-* **`/generate-password`**: Generates a random password.
-* Request: `GET`
-* Parameters:
-* `length`: the number of characters for the password (optional, default is 10)
-
-
-* Response: The generated password as a string.
-
-
-
-## **Usage Examples**
-
-To convert a temperature from Celsius to Fahrenheit:
-
-`GET /convertToFahrenheit/7`
-
-`Default : GET /convertToFahrenheit/:celsius`
-
-To convert a temperature from Fahrenheit to Celsius:
-
-`GET /convertToCelsius/7`
-
-`Default : GET /convertToCelsius/:fahrenheit`
-
-To generate a random password with 12 characters:
-
-`GET /passwordGenerator/12/true/false/true`
-
-`Default : GET /passwordGenerator/:lengthPass/:canUpper/:canNumber/:canSymbols`
-
-## **License**
-
-This API is distributed under the Apache License 2.0.
-
-## **Badges**
-
-* [Apache License](https://www.apache.org/licenses/LICENSE-2.0)
-
-## **Prerequisites**
-
-To use this API, you need to have Node.js and npm installed.
-
-## **Installation and Setup**
-
-1. Clone the repository: `git clone [https://github.com/](https://github.com/)[your-repository]/api-temperatura.git`
-2. Install dependencies: `npm install`
-3. Run the API: `node api.js`
-
-## **Contributing**
-
-To contribute to this API, please submit a pull request to the GitHub repository.
+### Examples of usage
+''' javascript
+api.convertToCelsius(100)
+api.convertToFahrenheit(100)
+api.secureConvertToFloat(100.5)
+api.secureConvertToInt(100.7)
+api.passwordGenerator(10, true, true, true)

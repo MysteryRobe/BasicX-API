@@ -1,68 +1,96 @@
-const express = require('express');
-const app = express();
-const settings = require('./settings.json');
+function convertToCelsius(fahrenheit) {    
+
+  if (typeof fahrenheit !== "number"|| isNaN(fahrenheit)){
+
+    throw new Error('Input must be a number : '+ fahrenheit);
+
+  }
 
 
-app.get("/passwordGenerator/:lengthPass/:canUpper/:canNumber/:canSymbols", (req, res) => {
-    try {
-        const length = parseInt(req.params.lengthPass);
-        
-        // 1. Corrigido as validações de texto para Booleano
-        const canUpper = req.params.canUpper === 'true';
-        const canNumber = req.params.canNumber === 'true';
-        const canSymbols = req.params.canSymbols === 'true';
+    let celsius = (fahrenheit - 32) * 5 / 9;
 
-        // Caracteres base (sempre ativos)
-        const lowercase = "abcdefghijklmnopqrstuvwxyz";
-        const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const numbers = "0123456789";
-        const symbols = "!@#$%^&*()_+{}|:<>?-=[]\\;',./"; // Adicionada barra invertida extra para escapar a outra '\\'
+    return celsius;
+}
 
-        // 2. Monta o "banco" de caracteres permitidos para essa senha
-        let allowedChars = lowercase;
-        if (canUpper) allowedChars += uppercase;
-        if (canNumber) allowedChars += numbers;
-        if (canSymbols) allowedChars += symbols;
+function convertToFahrenheit(celsius) {
 
-        // Validação caso o tamanho seja inválido
-        if (isNaN(length) || length <= 0) {
-            return res.status(400).json({ error: "O tamanho da senha deve ser um número maior que 0." });
-        }
+  if (typeof celsius !== "number"|| isNaN(celsius)){ 
 
-        // 3. Gera a senha sorteando diretamente do banco permitido
-        let password = '';
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * allowedChars.length);
-            password += allowedChars[randomIndex];
-        }  
 
-        // Retorna a senha gerada
-        res.json({ password: password });
+    throw new Error('Input must be a number : '+ celsius);
+  } 
 
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }   
-});
-app.get('/convertToFahrenheit/:celsius', (req, res) => {
-    try { 
+  let fahrenheit = (celsius * 9 / 5) + 32;
 
-    let fahrenheit = (req.params.celsius * 9 / 5) + 32;
-    res.json({ fahrenheit });
+  return fahrenheit;
+}
 
-    }catch (error) {
-        res.status(400).json({ error: error.message });
+function secureConvertToFloat(input) {
+
+  if (typeof input !== "number"|| isNaN(input)) { 
+    throw new Error('Input must be a number : ' + input);
+  }
+
+return parseFloat(input);
+
+}
+function secureConvertToInt(input) {
+
+  if (typeof input !== "number"|| isNaN(input) ) { 
+    throw new Error('Input must be a number : ' + input);
+  }
+
+return parseInt(input);
+
+}
+
+function passwordGenerator(length, includeUppercaseInput, includeNumbersInput, includeSymbolsInput) {
+
+   
+    
+if (typeof length !== "number" || isNaN(length) || length <= 0) {
+  throw new Error('Length must be a positive number : ' + length);
+}
+
+
+const symbols="!@#$%^&*()_+{}|:<>?-=[]\;',./";
+const numbers="0123456789";
+const uppercase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercase="abcdefghijklmnopqrstuvwxyz";
+ let includeNumbers=false
+    let includeSymbols=false
+    let includeUppercase=false
+    if(includeNumbersInput==true){
+        includeNumbers=true;
     }
-});
+    if(includeSymbolsInput==true){
+        includeSymbols=true;
+    }
+    if(includeUppercaseInput==true){
+        includeUppercase=true;
+    }
 
-app.get('/convertToCelsius/:fahrenheit', (req, res) => {
-    try {       
+    let password="";
+for (let i = 0; i < length; i++) {
+const choice = Math.floor(Math.random() * 4);
 
-    let celsius = (req.params.fahrenheit - 32) * 5 / 9;
-    res.json({ celsius });  
-     }catch (error) {
-        res.status(400).json({ error: error.message });
-    }});
 
-app.listen(settings.port, () => {
-    console.log(`Api Server is running on port ${settings.port}`);
-});
+ if (includeUppercase && choice === 0) {
+   password += uppercase[Math.floor(Math.random() * uppercase.length)];
+ }else if (includeNumbers && choice === 1) {
+   password += numbers[Math.floor(Math.random() * numbers.length)];
+ } else if (includeSymbols && choice === 2) {
+   password += symbols[Math.floor(Math.random() * symbols.length)];
+ } else {
+   password += lowercase[Math.floor(Math.random() * lowercase.length)];
+ }
+}
+
+return password;
+}
+
+module.exports.convertToCelsius=convertToCelsius;
+module.exports.convertToFahrenheit=convertToFahrenheit;
+module.exports.secureConvertToFloat=secureConvertToFloat;
+module.exports.secureConvertToInt=secureConvertToInt;
+module.exports.passwordGenerator=passwordGenerator;

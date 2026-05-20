@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+  
+    build: .
+    
+ 
+    container_name: basicx_api
+    
+    
+    ports:
+      - "3060:3060"
+    
+    
+    environment:
+      - NODE_ENV=production
+      - PORT=3060
+    
+  
+    restart: always

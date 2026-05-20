@@ -1,0 +1,24 @@
+{
+  "name": "basicx-api",
+  "version": "1.0.0",
+  "description": "simple js api ",
+  "homepage": "https://github.com/MysteryRobe/BasicX-API#readme",
+  "bugs": {
+    "url": "https://github.com/MysteryRobe/BasicX-API/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MysteryRobe/BasicX-API.git"
+  },
+  "license": "Apache-2.0",
+  "author": "MysteryRobe",
+  "type": "commonjs",
+  "main": "api.js",
+  "scripts": {
+    "test": "node api.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "ping": "^1.0.0"
+  }
+}
